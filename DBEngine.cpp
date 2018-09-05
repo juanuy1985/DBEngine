@@ -1,25 +1,7 @@
-// DBEngine.cpp: define el punto de entrada de la aplicación de consola.
-//
-
-#include "stdafx.h"
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Creation of the DBEngine
-#include "DBCollection.h"
-#include "PreprocessorTextDocument.h"
-#include "FeatureExtractorTextDocument.h"
-#include "InvertedIndex.h"
-<<<<<<< HEAD
-=======
-=======
-#include "PreprocessorTextDocument.h"
-#include "FeatureExtractorTextDocument.h"
-#include "InvertedIndex.h"
-#include "util.h"
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
+#include "Preprocessor/PreprocessorTextDocument.h"
+#include "FeatureExtractor/FeatureExtractorTextDocument.h"
+#include "Index/InvertedIndex.h"
+#include "Common/util.h"
 
 #include <iostream>
 #include <vector>
@@ -27,10 +9,6 @@
 using namespace std;
 using namespace jvr;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Creation of the DBEngine
 int main()
 {
 	vector<string> files;
@@ -44,9 +22,6 @@ int main()
 	files.push_back("D:\\Maestria\\Recuperación de la información\\txt\\platillos_voladores.txt");
 	files.push_back("D:\\Maestria\\Recuperación de la información\\txt\\psicologia_revolucionaria.txt");
 
-<<<<<<< HEAD
-=======
-=======
 void getInputFiles(vector<string>& files)
 {
 	ifstream file("input.txt");
@@ -65,30 +40,18 @@ int main()
 	vector<string> files;
 	getInputFiles(files);
 	
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
 	PreprocessorTextDocument preprocessor;
 	FeatureExtractorTextDocument extractor;
 	InvertedIndex index(&preprocessor, &extractor);
 
 	for (string file : files)
 	{
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Creation of the DBEngine
 		index.add(new TextDocument(file.c_str()));
 	}
 
 	for (auto entry : index.query("escuela"))
 	{
 		cout << entry->getFileName() << endl;
-	}
-
-<<<<<<< HEAD
-=======
-=======
-		index.add(new TextDocument(file));
 	}
 
 	cout<< endl << "Indice creado con: "<<files.size()<<" documentos."<<endl;
@@ -110,8 +73,6 @@ int main()
 
 		cin >> str;
 	}
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
 	cin.get();
 	return 0;
 }
