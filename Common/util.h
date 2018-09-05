@@ -2,8 +2,8 @@
 #define UTIL_H
 
 #include <iostream>
-#include "stemming\stemming\spanish_stem.h"
-#include "stemming\indexing\string_util.h"
+#include "stemming/stemming/spanish_stem.h"
+#include "stemming/indexing/string_util.h"
 
 using namespace std;
 

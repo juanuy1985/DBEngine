@@ -35,24 +35,16 @@ namespace jvr
         void loadAllWords()
         {
             words.clear();
-            ifstream file(filePath);
+            ifstream file(filePath.c_str());
             string word;
 
-<<<<<<< HEAD
-            while(file>>word)
-=======
-<<<<<<< HEAD
-            while(file>>word)
-=======
-			while(file>>word)
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
+	    while(file>>word)
             {
                 auto mapEntry = words.find(word);
-				if (mapEntry != words.end())
-					mapEntry->second++;
-				else
-					words[word] = 1;
+		if (mapEntry != words.end())
+			mapEntry->second++;
+		else
+			words[word] = 1;
             }
 
             file.close();

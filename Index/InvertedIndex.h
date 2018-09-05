@@ -5,9 +5,9 @@
 #include <set>
 
 #include "Index.h"
-#include "TextDocument.h"
-#include "PreprocessorTextDocument.h"
-#include "FeatureExtractorTextDocument.h"
+#include "../MetricObject/TextDocument.h"
+#include "../Preprocessor/PreprocessorTextDocument.h"
+#include "../FeatureExtractor/FeatureExtractorTextDocument.h"
 
 using namespace std;
 

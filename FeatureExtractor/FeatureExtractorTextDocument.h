@@ -4,7 +4,7 @@
 #include <map>
 
 #include "FeatureExtractor.h"
-#include "TextDocument.h"
+#include "../MetricObject/TextDocument.h"
 
 using namespace std;
 

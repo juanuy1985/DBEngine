@@ -6,8 +6,8 @@
 #include <vector>
 
 #include "Preprocessor.h"
-#include "TextDocument.h"
-#include "util.h"
+#include "../MetricObject/TextDocument.h"
+#include "../Common/util.h"
 
 using namespace std;
 

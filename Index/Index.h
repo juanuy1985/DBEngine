@@ -3,8 +3,8 @@
 
 #include <set>
 
-#include "Preprocessor.h"
-#include "FeatureExtractor.h"
+#include "../Preprocessor/Preprocessor.h"
+#include "../FeatureExtractor/FeatureExtractor.h"
 
 using namespace std;
 
