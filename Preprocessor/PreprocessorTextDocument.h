@@ -1,33 +1,13 @@
-<<<<<<< HEAD
-#ifndef PREPROCESSOR_TEXTDOCUMENT_H
-#define PREPROCESSOR_TEXTDOCUMENT_H
-
-=======
-<<<<<<< HEAD
-#ifndef PREPROCESSOR_TEXTDOCUMENT_H
-#define PREPROCESSOR_TEXTDOCUMENT_H
-
-=======
-#pragma once
-
 #ifndef PREPROCESSOR_TEXTDOCUMENT_H
 #define PREPROCESSOR_TEXTDOCUMENT_H
 
 #include <algorithm>
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
 #include <fstream>
 #include <vector>
 
 #include "Preprocessor.h"
 #include "TextDocument.h"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 #include "util.h"
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
 
 using namespace std;
 
@@ -36,18 +16,8 @@ namespace jvr
     class PreprocessorTextDocument: public Preprocessor<TextDocument>
     {
     private:
-<<<<<<< HEAD
-        vector<string> stopwords;
-=======
-<<<<<<< HEAD
-        vector<string> stopwords;
-=======
         vector<string> stopwords;					//Vector que contiene los stop words que se deben quitar
 		
-	private:
-
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
     public:
 
         PreprocessorTextDocument()
@@ -73,14 +43,6 @@ namespace jvr
 					document->getWords().erase(entry);
             }
 
-<<<<<<< HEAD
-            //Stemming
-
-=======
-<<<<<<< HEAD
-            //Stemming
-
-=======
 			//Apply Stemming
 			map<string, int> temporalWords = document->getWords();
 			document->getWords().clear();
@@ -95,8 +57,6 @@ namespace jvr
 				else
 					itWord->second += it.second;
 			}
->>>>>>> Creation of the DBEngine
->>>>>>> Creation of the DBEngine
         }
     };
 }
