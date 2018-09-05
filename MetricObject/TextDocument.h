@@ -1,6 +1,7 @@
 #ifndef TEXT_DOCUMENT_H
 #define TEXT_DOCUMENT_H
 
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <map>
@@ -37,6 +38,7 @@ namespace jvr
             words.clear();
             ifstream file(filePath.c_str());
             string word;
+
 
 	    while(file>>word)
             {

@@ -12,12 +12,12 @@ using namespace jvr;
 
 void getInputFiles(vector<string>& files)
 {
-	ifstream file("input.txt");
+	ifstream file("/home/ubuntu/Proyectos/DBEngine/Resources/input.txt");
 	string filePath;
 
 	while (std::getline(file, filePath))
 	{
-		files.push_back(filePath);
+		files.push_back("/home/ubuntu/Proyectos/DBEngine/Resources/Files/txt/" + filePath);
 	}
 
 	file.close();
@@ -34,12 +34,8 @@ int main()
 
 	for (string file : files)
 	{
+		cout<<file.c_str()<<endl;
 		index.add(new TextDocument(file.c_str()));
-	}
-
-	for (auto entry : index.query("escuela"))
-	{
-		cout << entry->getFileName() << endl;
 	}
 
 	cout<< endl << "Indice creado con: "<<files.size()<<" documentos."<<endl;
