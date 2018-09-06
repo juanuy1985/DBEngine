@@ -17,7 +17,7 @@ namespace jvr
 	template <class F, class T>
 	class Index
 	{
-	private:
+	protected:
 		Preprocessor<T>* preprocessor;
 		FeatureExtractor<F, T>* featureExtractor;
 	public:
