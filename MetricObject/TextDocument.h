@@ -22,15 +22,15 @@ namespace jvr
             loadAllWords();
         }
 
-		map<string, int>& getWords()
-		{
-			return words;
-		}
+	map<string, int>& getWords()
+	{
+		return words;
+	}
 
-		string getFileName()
-		{
-			return filePath;
-		}
+	string getFileName()
+	{
+		return filePath;
+	}
 
     protected:
         void loadAllWords()

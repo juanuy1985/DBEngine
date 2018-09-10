@@ -2,6 +2,7 @@
 #define UTIL_H
 
 #include <iostream>
+#include <fstream>
 #include "stemming/stemming/spanish_stem.h"
 #include "stemming/indexing/string_util.h"
 
@@ -9,6 +10,12 @@ using namespace std;
 
 namespace jvr
 {
+	inline bool fileExists (const std::string& name) 
+	{
+		ifstream f(name.c_str());
+    		return f.good();
+	}
+
 	string charsForRemoving = ".,;:-_+?=)(/*%$#@\"'^~|°<>[]{}¨";
 
 	inline string cleanAndApplyStemming(const string& str)

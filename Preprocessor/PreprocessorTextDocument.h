@@ -13,16 +13,14 @@ using namespace std;
 
 namespace jvr
 {
-    class PreprocessorTextDocument: public Preprocessor<TextDocument>
-    {
-    private:
-        vector<string> stopwords;					//Vector que contiene los stop words que se deben quitar
-		
-    public:
-
-        PreprocessorTextDocument()
-        {
-            ifstream file("stopwords.txt");
+	class PreprocessorTextDocument: public Preprocessor<TextDocument>
+	{
+	private:
+		vector<string> stopwords;		//Vector que contiene los stop words que se deben quitar	
+	public:
+		PreprocessorTextDocument()
+		{
+			ifstream file("stopwords.txt");
 			string word;
 			
 			while (file>>word)
@@ -31,17 +29,17 @@ namespace jvr
 			}
 
 			file.close();
-        }
+        	}
 
-        void preprocess(TextDocument* document)
-        {
-            //Remove all stop words in the file
-            for(auto stopword : stopwords)
-            {
-                auto entry = document->getWords().find(stopword);
+        	void preprocess(TextDocument* document)
+        	{
+            		//Remove all stop words in the file
+            		for(auto stopword : stopwords)
+            		{
+                		auto entry = document->getWords().find(stopword);
 				if (entry != document->getWords().end())
 					document->getWords().erase(entry);
-            }
+            		}
 
 			//Apply Stemming
 			map<string, int> temporalWords = document->getWords();
@@ -57,8 +55,8 @@ namespace jvr
 				else
 					itWord->second += it.second;
 			}
-        }
-    };
+        	}
+	};
 }
 
 #endif // PREPROCESSOR_TEXTDOCUMENT_H

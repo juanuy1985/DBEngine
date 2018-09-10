@@ -10,17 +10,17 @@ using namespace std;
 
 namespace jvr
 {
-	class FeatureExtractorImageDocumentGrid100x100: public FeatureExtractor< vector<float>, ImageDocument >
+	class FeatureExtractorImageDocumentGrid100x100: public FeatureExtractor< vector<double>, ImageDocument >
 	{
 	public:
-		vector<float>* getFeatures(ImageDocument* image)
+		vector<double>* getFeatures(ImageDocument* image)
 		{
+
 			int blockDimensionX = image->width() / 100;
 			int blockDimensionY = image->height() / 100;
 
 			int currentX = 0, currentY = 0;
-
-			vector<float>* features = new vector<float>(10000,0);
+			vector<double>* features = new vector<double>(10000,0);
 			for(int y=0; y<100 ;y++)
 			{
 				for(int x=0; x<100 ;x++)

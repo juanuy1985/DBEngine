@@ -4,6 +4,8 @@
 #include <vector>
 #include <set>
 #include <cmath>
+#include <functional>
+#include <limits>
 
 #include "Index.h"
 #include "../MetricObject/ImageDocument.h"
@@ -14,33 +16,20 @@ using namespace std;
 
 namespace jvr
 {
-	class IndexVectorImage : public Index< vector<float>, ImageDocument>
+	class IndexVectorImage : public Index< vector<double>, ImageDocument>
 	{
 	private:
-		vector<pair<vector<float>*, ImageDocument*>> structure;
-
-		float getDistance( vector<float>& v1, vector<float>& v2 )
-		{
-			float result = 0;
-
-			for(int index=0; index<v1.size() ;index++ )
-			{
-				result += (v1[index]-v2[index]) * (v1[index]-v2[index]);
-			}
-
-			return sqrt(result);
-		}
-
-
+		vector<pair<vector<double>*, ImageDocument*>> structure;
+		function<double(vector<double>&, vector<double>&)> distanceCalculator;
 	public:
-		IndexVectorImage(PreprocessorImageDefault* preprocessor, FeatureExtractorImageDocumentGrid100x100* featureExtractor) :Index(preprocessor, featureExtractor)
+		IndexVectorImage(PreprocessorImageDefault* preprocessor, FeatureExtractorImageDocumentGrid100x100* featureExtractor, function<double(vector<double>&, vector<double>&)> distanceCalculator) : Index(preprocessor, featureExtractor)
 		{
-
+			this->distanceCalculator = distanceCalculator;
 		}
 
-		void indexObject( ImageDocument* image, vector<float>* features )
+		void indexObject( ImageDocument* image, vector<double>* features )
 		{
-			structure.push_back( pair<vector<float>*, ImageDocument*>(features, image) );
+			structure.push_back( pair<vector<double>*, ImageDocument*>(features, image) );
 		}
 
 		set<ImageDocument*> query(ImageDocument* query)
@@ -48,10 +37,10 @@ namespace jvr
 			set<ImageDocument*> result;
 			auto features = this->featureExtractor->getFeatures(query);
 			ImageDocument* similar = NULL;
-			float lessDistance = 1000000000, distance = 0;
+			double lessDistance = numeric_limits<double>::max(), distance = 0;
 			for(auto tuple : structure)
 			{
-				distance = getDistance( *features, *(tuple.first) );
+				distance = distanceCalculator( *features, *(tuple.first) );
 				if(lessDistance > distance)
 				{
 					similar = tuple.second;

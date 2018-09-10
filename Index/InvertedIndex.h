@@ -13,7 +13,7 @@ using namespace std;
 
 namespace jvr
 {
-	class InvertedIndex : public Index< map<string, int>, TextDocument>
+	class InvertedIndex : public Index<map<string, int>, TextDocument>
 	{
 	private:
 		map<string, set<TextDocument*>> structure;

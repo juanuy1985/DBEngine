@@ -2,6 +2,7 @@
 #include "FeatureExtractor/FeatureExtractorImageDocumentGrid100x100.h"
 #include "Preprocessor/PreprocessorImageDefault.h"
 #include "Index/IndexVectorImage.h"
+#include "Common/Distances.h"
 #include <iostream>
 
 using namespace std;
@@ -24,17 +25,23 @@ int main()
 
 
 	FeatureExtractorImageDocumentGrid100x100* extractor = new FeatureExtractorImageDocumentGrid100x100();
+	
 	PreprocessorImageDefault* preprocessor = new PreprocessorImageDefault();
 
-	IndexVectorImage index(preprocessor, extractor);
+	IndexVectorImage* index = new IndexVectorImage(preprocessor, extractor, EuclideanDistance);
+	
+	cout<<"Comenzando la indexación..."<<endl;
+
 	for(string fileName : images)
 	{
 		ImageDocument* object = new ImageDocument(fileName);
-		index.add(object);
+		index->add(object);
 	}
 
+	cout<<"Indexación Finalizada.";
+
 	ImageDocument* q = new ImageDocument("Resources/Files/jpg/desierto02.jpg");
-	set<ImageDocument*> result = index.query(q);
+	set<ImageDocument*> result = index->query(q);
 	
 	cout<<"Resultado de la consulta: "<<endl;
 
