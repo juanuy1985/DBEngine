@@ -10,7 +10,7 @@
 #include "Index.h"
 #include "../MetricObject/ImageDocument.h"
 #include "../Preprocessor/PreprocessorImageDefault.h"
-#include "../FeatureExtractor/FeatureExtractorImageDocumentGrid100x100.h"
+#include "../FeatureExtractor/FeatureExtractor.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ namespace jvr
 		vector<pair<vector<double>*, ImageDocument*>> structure;
 		function<double(vector<double>&, vector<double>&)> distanceCalculator;
 	public:
-		IndexVectorImage(PreprocessorImageDefault* preprocessor, FeatureExtractorImageDocumentGrid100x100* featureExtractor, function<double(vector<double>&, vector<double>&)> distanceCalculator) : Index(preprocessor, featureExtractor)
+		IndexVectorImage(PreprocessorImageDefault* preprocessor, FeatureExtractor<vector<double>, ImageDocument>* featureExtractor, function<double(vector<double>&, vector<double>&)> distanceCalculator) : Index(preprocessor, featureExtractor)
 		{
 			this->distanceCalculator = distanceCalculator;
 		}
@@ -41,6 +41,9 @@ namespace jvr
 			for(auto tuple : structure)
 			{
 				distance = distanceCalculator( *features, *(tuple.first) );
+				
+				cout<<tuple.second->getFilePath()<<": "<<distance<<endl;
+
 				if(lessDistance > distance)
 				{
 					similar = tuple.second;

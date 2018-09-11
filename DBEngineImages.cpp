@@ -1,5 +1,5 @@
 #include "MetricObject/ImageDocument.h"
-#include "FeatureExtractor/FeatureExtractorImageDocumentGrid100x100.h"
+#include "FeatureExtractor/FeatureExtractorImageHistogram.h"
 #include "Preprocessor/PreprocessorImageDefault.h"
 #include "Index/IndexVectorImage.h"
 #include "Common/Distances.h"
@@ -12,7 +12,7 @@ int main()
 {
 	vector<string> images;
 	images.push_back("Resources/Files/jpg/desierto01.jpg");
-	//images.push_back("Resources/Files/jpg/desierto02.jpg");
+	images.push_back("Resources/Files/jpg/desierto02.jpg");
 	images.push_back("Resources/Files/jpg/desierto03.jpg");
 	images.push_back("Resources/Files/jpg/desierto04.jpg");
 	images.push_back("Resources/Files/jpg/desierto05.jpg");
@@ -21,12 +21,12 @@ int main()
 	images.push_back("Resources/Files/jpg/playa02.jpg");
 	images.push_back("Resources/Files/jpg/playa03.jpg");
 	images.push_back("Resources/Files/jpg/playa04.jpg");
-	//images.push_back("Resources/Files/jpg/playa05.jpg");
+	images.push_back("Resources/Files/jpg/playa05.jpg");
 
 
-	FeatureExtractorImageDocumentGrid100x100* extractor = new FeatureExtractorImageDocumentGrid100x100();
+	auto extractor = new FeatureExtractorImageHistogram();
 	
-	PreprocessorImageDefault* preprocessor = new PreprocessorImageDefault();
+	auto preprocessor = new PreprocessorImageDefault();
 
 	IndexVectorImage* index = new IndexVectorImage(preprocessor, extractor, EuclideanDistance);
 	
@@ -38,9 +38,9 @@ int main()
 		index->add(object);
 	}
 
-	cout<<"Indexación Finalizada.";
+	cout<<"Indexación Finalizada."<<endl;
 
-	ImageDocument* q = new ImageDocument("Resources/Files/jpg/desierto02.jpg");
+	ImageDocument* q = new ImageDocument("Resources/Files/jpg/playa03.jpg");
 	set<ImageDocument*> result = index->query(q);
 	
 	cout<<"Resultado de la consulta: "<<endl;
