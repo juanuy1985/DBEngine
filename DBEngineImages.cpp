@@ -23,6 +23,7 @@ int main()
 	images.push_back("Resources/Files/jpg/playa04.jpg");
 	images.push_back("Resources/Files/jpg/playa05.jpg");
 
+	images.push_back("Resources/Files/jpg/Lena.jpg");
 
 	auto extractor = new FeatureExtractorImageHistogram();
 	
