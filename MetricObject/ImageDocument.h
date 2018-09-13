@@ -57,6 +57,17 @@ namespace jvr
 		{
 			return filePath;
 		}
+
+		void getHaarMultiscaleWaveletTransform()
+		{
+			image->haar(false, 1);	
+			cout<<filePath<<endl;
+		}
+
+		void resize(int width, int height)
+		{
+			image->resize(width, height);
+		}
 	};
 }
 

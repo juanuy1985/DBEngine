@@ -38,13 +38,15 @@ int main()
 	for(string fileName : images)
 	{
 		ImageDocument* object = new ImageDocument(fileName);
+		//object->resize(256,256);
 		index.add(object);
+		//object->getHaarMultiscaleWaveletTransform();
 	}
 
 	cout<<"Indexación Finalizada."<<endl;
 
 	ImageDocument* q = new ImageDocument("Resources/Files/jpg/playa03.jpg");
-	set<ImageDocument*> result = index.query(q, 5);
+	set<ImageDocument*> result = index.query(q, 10);
 	
 	cout<<"Resultado de la consulta: "<<endl;
 
