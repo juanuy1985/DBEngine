@@ -2,8 +2,10 @@
 #include "FeatureExtractor/FeatureExtractorImageHistogram.h"
 #include "Preprocessor/PreprocessorImageDefault.h"
 #include "Index/IndexVectorImage.h"
+#include "Index/IndexVPT.h"
 #include "Common/Distances.h"
 #include <iostream>
+#include <functional>
 
 using namespace std;
 using namespace jvr;
@@ -29,20 +31,20 @@ int main()
 	
 	auto preprocessor = new PreprocessorImageDefault();
 
-	IndexVectorImage* index = new IndexVectorImage(preprocessor, extractor, EuclideanDistance);
+	IndexVPT<vector<double>, ImageDocument, function<double(vector<double>&, vector<double>&)>> index(preprocessor, extractor, EuclideanDistance);
 	
 	cout<<"Comenzando la indexación..."<<endl;
 
 	for(string fileName : images)
 	{
 		ImageDocument* object = new ImageDocument(fileName);
-		index->add(object);
+		index.add(object);
 	}
 
 	cout<<"Indexación Finalizada."<<endl;
 
 	ImageDocument* q = new ImageDocument("Resources/Files/jpg/playa03.jpg");
-	set<ImageDocument*> result = index->query(q);
+	set<ImageDocument*> result = index.query(q, 5);
 	
 	cout<<"Resultado de la consulta: "<<endl;
 
