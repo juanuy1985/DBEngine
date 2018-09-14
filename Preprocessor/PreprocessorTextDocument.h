@@ -16,7 +16,7 @@ namespace jvr
 	class PreprocessorTextDocument: public Preprocessor<TextDocument>
 	{
 	private:
-		vector<string> stopwords;		//Vector que contiene los stop words que se deben quitar	
+		vector<string> stopwords;		//Vector que contiene los stop words que se deben quitar
 	public:
 		PreprocessorTextDocument()
 		{
@@ -33,7 +33,7 @@ namespace jvr
 
         	void preprocess(TextDocument* document)
         	{
-            		//Remove all stop words in the file
+            		// Remove all stop words in the file
             		for(auto stopword : stopwords)
             		{
                 		auto entry = document->getWords().find(stopword);
@@ -41,7 +41,7 @@ namespace jvr
 					document->getWords().erase(entry);
             		}
 
-			//Apply Stemming
+			// Clean and Stemming
 			map<string, int> temporalWords = document->getWords();
 			document->getWords().clear();
 			string str;

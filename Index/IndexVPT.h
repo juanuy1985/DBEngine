@@ -78,14 +78,22 @@ namespace jvr
 		
 			if (distance < middleDistance)
 			{
-				if (leftChildrenSize <= numberObjects )
+				if (leftChildrenSize <= numberObjects)
+				{
+					if (leftChildrenSize == 0)
+						return nodeAsSet();
 					return subTreeAsSet(left);
+				}
 				return left->query(queryObject, distanceCalculator, numberObjects);
 			}
 			else
 			{
-				if (rightChildrenSize <= numberObjects )
+				if (rightChildrenSize <= numberObjects)
+				{
+					if (rightChildrenSize == 0)
+                                                return nodeAsSet();
 					return subTreeAsSet(right);
+				}
 				return right->query(queryObject, distanceCalculator, numberObjects);
 			}
 		}
@@ -95,6 +103,14 @@ namespace jvr
 			set<T*> result;
 			fillSet(result, node);
 			return result;
+		}
+
+		
+		set<T*> nodeAsSet()
+		{
+			set<T*> result;
+			result.insert(this->middleObject.second);
+			return result;	
 		}
 
 		void fillSet(set<T*>& result, VPTNode<F, T, D>* node)
