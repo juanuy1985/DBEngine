@@ -54,7 +54,7 @@ int main()
 		{
 			cout << "resultado: " << endl;
 			TextDocument* document = new TextDocument(file.c_str());
-			set<TextDocument*> results = index.query(document, 10);
+			set<TextDocument*> results = index.query(document,4) ;
 			for(TextDocument* result : results)
 			{
 				cout<<result->getFileName()<<endl;
