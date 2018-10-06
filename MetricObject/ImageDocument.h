@@ -58,10 +58,9 @@ namespace jvr
 			return filePath;
 		}
 
-		void getHaarMultiscaleWaveletTransform()
+		CImg<unsigned char> haar()
 		{
-			image->haar(false, 1);	
-			cout<<filePath<<endl;
+			return image->haar(false, 10);	
 		}
 
 		void resize(int width, int height)

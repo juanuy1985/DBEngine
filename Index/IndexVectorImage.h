@@ -53,6 +53,22 @@ namespace jvr
 			result.insert(similar);
 			return result;
 		}
+
+		void print(ImageDocument* query) {
+			double distance = 0.0;
+			vector<pair<double, ImageDocument*>> order;
+			auto features = this->featureExtractor->getFeatures(query);
+                        for(auto tuple : structure)
+                        {
+                                distance = distanceCalculator( *features, *(tuple.first) );
+				order.push_back(pair<double,ImageDocument*>(distance, tuple.second));
+                        }
+			sort(order.begin(), order.end());
+			for(auto tuple : order)
+			{
+				cout<<tuple.second->getFilePath()<<": "<<tuple.first<<endl;
+			}
+		}
 	};
 }
 

@@ -11,7 +11,20 @@
 using namespace std;
 using namespace jvr;
 
-int main(int arg, char** argv)
+int main()
+{
+	string fileName = "Resources/Files/jpg/desierto01.jpg";
+	ImageDocument* img = new ImageDocument(fileName);
+	img->resize(256, 256);
+	CImg<unsigned char> h = img->haar();
+
+	h.save("haar.jpg");
+
+	delete(img);
+	return 0;
+}
+
+int main1(int arg, char** argv)
 {
 	if (arg > 1)
 	{
@@ -37,12 +50,12 @@ int main(int arg, char** argv)
 
 		images.push_back("Resources/Files/jpg/Lena.jpg");
 
-		//auto extractor = new FeatureExtractorImageHistogram();
-		auto extractor = new FeatureExtractorImageDocumentGrid100x100();
+		auto extractor = new FeatureExtractorImageHistogram();
+		//auto extractor = new FeatureExtractorImageDocumentGrid100x100();
 	
 		auto preprocessor = new PreprocessorImageDefault();
 
-		IndexVPT<vector<double>, ImageDocument, function<double(vector<double>&, vector<double>&)>> index(preprocessor, extractor, EuclideanDistance);
+		IndexVectorImage index(preprocessor, extractor, EuclideanDistance);
 	
 		cout<<"Comenzando la indexación..."<<endl;
 
@@ -55,14 +68,16 @@ int main(int arg, char** argv)
 		cout<<"Indexación Finalizada."<<endl;
 
 		ImageDocument* q = new ImageDocument(argv[1]);
-		set<ImageDocument*> result = index.query(q, 10);
+	
+		index.print(q);
+		/*set<ImageDocument*> result = index.query(q);
 	
 		cout<<"Resultado de la consulta: "<<endl;
 
 		for(ImageDocument* document : result)
 		{
 			cout<<document->getFilePath()<<endl;
-		}
+		}*/
 
 		delete(extractor);
 		delete(preprocessor);
