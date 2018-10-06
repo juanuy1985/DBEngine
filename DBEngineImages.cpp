@@ -13,7 +13,7 @@ using namespace jvr;
 
 int main()
 {
-	string fileName = "Resources/Files/jpg/desierto01.jpg";
+	string fileName = "Resources/Files/jpg/Face.jpg";
 	ImageDocument* img = new ImageDocument(fileName);
 	img->resize(256, 256);
 	CImg<unsigned char> h = img->haar();
