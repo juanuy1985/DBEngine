@@ -12,7 +12,7 @@
 using namespace std;
 using namespace jvr;
 
-int main2()
+int main()
 {
 	string fileName = "Resources/Files/jpg/Face.jpg";
 	ImageDocument* img = new ImageDocument(fileName);
@@ -25,7 +25,7 @@ int main2()
 	return 0;
 }
 
-int main(int arg, char** argv)
+int main2(int arg, char** argv)
 {
 	if (arg > -1)
 	{
@@ -49,7 +49,7 @@ int main(int arg, char** argv)
 		images.push_back("Resources/Files/jpg/bosque05.jpg");
 		images.push_back("Resources/Files/jpg/bosque06.jpg");
 
-		images.push_back("Resources/Files/jpg/Lena.jpg");
+		images.push_back("Resources/Files/jpg/Face01.jpg");
 
 		auto extractor = new FeatureExtractorHaar();
 		//auto extractor = new FeatureExtractorImageDocumentGrid100x100();

@@ -67,7 +67,7 @@ namespace jvr
 
 		CImg<unsigned char> haar()
 		{
-			return image->haar(false, 2);	
+			return image->haar(true, 1);	
 		}
 
 		void resize(int width, int height)

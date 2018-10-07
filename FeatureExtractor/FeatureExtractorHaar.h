@@ -35,8 +35,8 @@ namespace jvr
 
 			ImageDocument id(&wavelet);
 			double value = 0.0;
-			for(unsigned int y=0; y<32;y++){
-				for(unsigned int x=0; x<32;x++)
+			for(unsigned int y=0; y<16;y++){
+				for(unsigned int x=0; x<16;x++)
 				{
 					Pixel* pixel = id.getPixel(x, y);	
 					features->push_back(sqrt(pixel->r*pixel->r + pixel->g * pixel->g + pixel->b * pixel->b));	
