@@ -22,6 +22,12 @@ namespace jvr
 		CImg<unsigned char>* image;
 		string filePath;
 	public:
+		ImageDocument(CImg<unsigned char>* image)
+		{
+			this->image = image;
+			this->filePath = "";
+		}	
+
 		ImageDocument(string filePath)
 		{
 			this->filePath = filePath;
@@ -30,7 +36,8 @@ namespace jvr
 
 		~ImageDocument()
 		{
-			delete(image);
+			if(filePath != "")
+				delete(image);
 		}
 
 		int width()

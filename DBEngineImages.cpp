@@ -1,6 +1,7 @@
 #include "MetricObject/ImageDocument.h"
-#include "FeatureExtractor/FeatureExtractorImageHistogram.h"
-#include "FeatureExtractor/FeatureExtractorImageDocumentGrid100x100.h"
+// #include "FeatureExtractor/FeatureExtractorImageHistogram.h"
+// #include "FeatureExtractor/FeatureExtractorImageDocumentGrid100x100.h"
+#include "FeatureExtractor/FeatureExtractorHaar.h"
 #include "Preprocessor/PreprocessorImageDefault.h"
 #include "Index/IndexVectorImage.h"
 #include "Index/IndexVPT.h"
@@ -11,7 +12,7 @@
 using namespace std;
 using namespace jvr;
 
-int main()
+int main2()
 {
 	string fileName = "Resources/Files/jpg/Face.jpg";
 	ImageDocument* img = new ImageDocument(fileName);
@@ -24,9 +25,9 @@ int main()
 	return 0;
 }
 
-int main1(int arg, char** argv)
+int main(int arg, char** argv)
 {
-	if (arg > 1)
+	if (arg > -1)
 	{
 		vector<string> images;
 		images.push_back("Resources/Files/jpg/desierto01.jpg");
@@ -50,7 +51,7 @@ int main1(int arg, char** argv)
 
 		images.push_back("Resources/Files/jpg/Lena.jpg");
 
-		auto extractor = new FeatureExtractorImageHistogram();
+		auto extractor = new FeatureExtractorHaar();
 		//auto extractor = new FeatureExtractorImageDocumentGrid100x100();
 	
 		auto preprocessor = new PreprocessorImageDefault();
@@ -62,13 +63,14 @@ int main1(int arg, char** argv)
 		for(string fileName : images)
 		{
 			ImageDocument* object = new ImageDocument(fileName);
+			object->resize(256, 256);
 			index.add(object);
 		}	
 
 		cout<<"Indexación Finalizada."<<endl;
 
-		ImageDocument* q = new ImageDocument(argv[1]);
-	
+		ImageDocument* q = new ImageDocument("Resources/Files/jpg/Face.jpg");
+		q->resize(256, 256);	
 		index.print(q);
 		/*set<ImageDocument*> result = index.query(q);
 	
