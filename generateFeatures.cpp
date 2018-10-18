@@ -11,7 +11,7 @@ int main()
         image->resize(256, 256);
         // convert from unsigned char to float to support larger range of values
 
-	CImg<unsigned char> wavelet = image->haar();
+	CImg<unsigned char> wavelet = image->haar(false, 16);
 
         wavelet.save("Resources/Files/FaceHaar.jpg");
 
