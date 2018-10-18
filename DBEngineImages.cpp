@@ -15,13 +15,18 @@ using namespace jvr;
 int main()
 {
 	string fileName = "Resources/Files/jpg/Face.jpg";
-	ImageDocument* img = new ImageDocument(fileName);
-	img->resize(256, 256);
-	CImg<unsigned char> h = img->haar();
+	CImg<float> fft_in(fileName);
+	fft_in.resize(256, 256);
+	// convert from unsigned char to float to support larger range of values
 
-	h.save("haar.jpg");
+	// Forward transform
+	CImgList<float> fft = fft_in .get_FFT();
 
-	delete(img);
+	// Inverse transform
+	CImg<float>::FFT(fft[0], fft[1], true);
+
+	// Normalize back to unsigned char range (0,255) and save
+	fft[0].normalize(0,255).save("img/fft.png");
 	return 0;
 }
 
