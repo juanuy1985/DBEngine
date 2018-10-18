@@ -13,7 +13,7 @@ int main()
 
 	CImg<unsigned char> wavelet = image->haar(true, 16);
 
-        wavelet.normalize(0,255).save("Resources/Files/FaceHaar.jpg");
+        wavelet.save("Resources/Files/FaceHaar.jpg");
 
 
 	delete(image);
