@@ -17,7 +17,7 @@ struct Feature
 	float min = numeric_limits<float>::infinity();
 };
 
-Feature getStatistics(CImg<float>& wavelet){
+vector<float> getStatistics(CImg<float>& wavelet){
 	vector<float> features;
 	Feature result;
 
@@ -33,12 +33,12 @@ Feature getStatistics(CImg<float>& wavelet){
 			result.max = result.max < value ? value : result.max;
                 }
         }
-	result.mean = result.sum / 1024;
+	//result.mean = result.sum / 1024;
 
-	sort(features.begin(), features.end());
-	result.median = features[512];
+	//sort(features.begin(), features.end());
+	//result.median = features[512];
 	
-	return result;
+	return features;
 }
 
 void process(vector<string>& id, vector<string>& pictures)
@@ -48,8 +48,14 @@ void process(vector<string>& id, vector<string>& pictures)
 		CImg<float> image(pictures[index].c_str());
 		image.resize(256,256);
 		CImg<float> wavelet = image.haar(false, 3);
-		Feature result = getStatistics(wavelet);
-		cout<<id[index]<<", "<<result.mean<<", "<<result.median<<", "<<result.max<<", "<<result.min<<endl;
+		vector<float> result = getStatistics(wavelet);
+		//cout<<id[index]<<", "<<result.mean<<", "<<result.median<<", "<<result.max<<", "<<result.min<<endl;
+		cout<<id[index];
+		for(int index=0; index<result.size(); index++)
+		{
+			cout<<", "<<result[index];
+		}
+		cout<<endl;
 	}
 }
 
