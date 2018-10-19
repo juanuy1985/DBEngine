@@ -47,9 +47,9 @@ void process(vector<string>& id, vector<string>& pictures)
 	{
 		CImg<float> image(pictures[index].c_str());
 		image.resize(256,256);
-		CImg<float> wavelet = image.haar(false, 4);
+		CImg<float> wavelet = image.haar(false, 3);
 		Feature result = getStatistics(wavelet);
-		cout<<id[index]<<", "<<result.sum<<", "<<result.mean<<", "<<result.median<<", "<<result.max<<", "<<result.min<<endl;
+		cout<<id[index]<<", "<<result.mean<<", "<<result.median<<", "<<result.max<<", "<<result.min<<endl;
 	}
 }
 
