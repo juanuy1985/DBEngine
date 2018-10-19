@@ -56,8 +56,6 @@ void process(vector<string>& id, vector<string>& pictures)
 
 int main(int argc, char** argv)
 {
-	if(argc > 1)
-	{
 		vector<string> ids;
 		vector<string> paths;
 		string id, path;
@@ -69,7 +67,6 @@ int main(int argc, char** argv)
 		}
 
 		process(ids, paths);
-	}
 	return 0;
 }
 
