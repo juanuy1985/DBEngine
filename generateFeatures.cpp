@@ -13,7 +13,7 @@ struct Feature
 	float sum = 0;
 	float mean = 0;
 	float median = 0;
-	float max = 0;
+	float max = -1 * numeric_limits<float>::infinity();
 	float min = numeric_limits<float>::infinity();
 };
 
@@ -47,7 +47,7 @@ void process(vector<string>& id, vector<string>& pictures)
 	{
 		CImg<float> image(pictures[index].c_str());
 		image.resize(256,256);
-		CImg<float> wavelet = image.haar(false, 16);
+		CImg<float> wavelet = image.haar(false, 4);
 		Feature result = getStatistics(wavelet);
 		cout<<id[index]<<", "<<result.sum<<", "<<result.mean<<", "<<result.median<<", "<<result.max<<", "<<result.min<<endl;
 	}
@@ -56,33 +56,18 @@ void process(vector<string>& id, vector<string>& pictures)
 
 int main(int argc, char** argv)
 {
-		vector<string> ids;
-		vector<string> paths;
-		string id, path;
-		while(getline(cin, id, '@'))
-		{
-			getline(cin, path);
-			ids.push_back(id);
-			paths.push_back(path);			
-		}
+	vector<string> ids;
+	vector<string> paths;
+	string id, path;
+	while(getline(cin, id, '@'))
+	{
+		getline(cin, path);
+		ids.push_back(id);
+		paths.push_back(path);			
+	}
 
-		process(ids, paths);
+	process(ids, paths);
 	return 0;
 }
 
 
-int main1()
-{
-        string fileName = "/home/ubuntu/Proyectos/DBEngine/Resources/faces/adhast/adhast.1.jpg";
-        CImg<float>* image = new CImg<float>(fileName.c_str());
-        image->resize(256, 256);
-        // convert from unsigned char to float to support larger range of values
-
-	CImg<float> wavelet = image->haar(false, 16);
-
-        wavelet.save("Resources/Files/FaceProcess.jpg");
-
-	delete(image);
-
-        return 0;
-}
